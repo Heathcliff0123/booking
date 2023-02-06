@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!$_SESSION['uid'])
+{
+    header("location:/Login.php");
+}
  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book2']))
  {
     $conn = new mysqli('sql8.freesqldatabase.com','sql8594466','XBamJ2kXFC','sql8594466');
@@ -150,8 +154,8 @@ session_start();
             echo "<td>" . $address. "</td>";
             echo "</tr>";
             echo "</table>";
-            echo "<form action='Book1.php' method='POST' name='confirm'>";
-            echo "<button name='confirm' type ='submit' id='confirm' >Confirm</button>";
+           echo "<form action='Bookings.php' method='POST' name='booking1'>";
+            echo "<button name='booking1' type = 'submit' id='booking1' >Confirm</button>";
             echo "</form>";
 
 

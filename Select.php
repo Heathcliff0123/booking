@@ -11,6 +11,9 @@
       <button type = "submit" name="details" id="details">Edit User Details</button>
     </div>
 </form>
+  <form action='Bookings.php' method='POST' name='booking3'>
+    <button name='booking3' type = 'submit' id='booking3' >View Bookings</button>
+   </form>
   <form action='Select.php' method="POST" name="cDates">
     <label>CHeck in Date</label>
     <input name="dateIn" type="datetime-local" required />
@@ -25,6 +28,10 @@
 <?php
 
 session_start();
+if(!$_SESSION['uid'])
+{
+    header("location:/Login.php");
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['details']))
  {

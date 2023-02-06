@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if(!$_SESSION['uid'])
+{
+    header("location:/Login.php");
+}
+
  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book1']))
  {
     $conn = new mysqli('sql8.freesqldatabase.com','sql8594466','XBamJ2kXFC','sql8594466');
@@ -18,9 +24,6 @@ session_start();
     if($resultu){
    if($resultu->num_rows > 0){
     $userd = $resultu->fetch_assoc();
-       
-     
-  
    } else{
     echo "user data fault";
    }
@@ -31,7 +34,7 @@ session_start();
 }
  if($resulth){
    if($resulth->num_rows > 0){
-    $hoteld = $resulth->fetch_assoc();
+    $hotelData = $resulth->fetch_assoc();
        
      
   
@@ -46,16 +49,16 @@ session_start();
     $diff = getdate($outDate - $inDate)["mday"];
     $inDate = date('y/m/d',$inDate);
     $outDate = date('y/m/d',$outDate);
-    $hName = $hoteld["name"];
-    $price = $hoteld["price"];
+    $hName = $hotelData["name"];
+    $price = $hotelData["price"];
     $total = $diff*$price;
-    $rating = $hoteld["rating"];
-    $beds = $hoteld["beds"];
-    $bar = $hoteld["bar"];
-    $pool = $hoteld["pool"];
-    $sea = $hoteld["sea"];
-    $activity = $hoteld["activity"];
-    $address = $hoteld["address"];
+    $rating = $hotelData["rating"];
+    $beds = $hotelData["beds"];
+    $bar = $hotelData["bar"];
+    $pool = $hotelData["pool"];
+    $sea = $hotelData["sea"];
+    $activity = $hotelData["activity"];
+    $address = $hotelData["address"];
 
         echo "<table border=0>";
        //$response = array();
@@ -150,26 +153,14 @@ session_start();
             echo "<td>" . $address. "</td>";
             echo "</tr>";
             echo "</table>";
-            echo "<form action='Book1.php' method='POST' name='confirm'>";
-            echo "<button name='confirm' type = 'submit' id='confirm' >Confirm</button>";
+            echo "<form action='Bookings.php' method='POST' name='booking1'>";
+            echo "<button name='booking1' type = 'submit' id='booking1' >Confirm</button>";
             echo "</form>";
 
-
-    
-
-
  }
 
 
-  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm']))
- {
-    echo "<form action='Info.php' method='POST' name='select'>";
-    echo " <div >";
-    echo "  <button type = 'submit' name='select' id='select'>Select Hotel</button>";
-    echo "  </div>";
-    echo "</form>";
-    echo "Booking Confirmed";
- }
+ 
 
  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
  {

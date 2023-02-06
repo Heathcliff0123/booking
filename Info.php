@@ -11,6 +11,10 @@
     </div>
 </form>
 
+<form action='Bookings.php' method='POST' name='booking3'>
+    <button name='booking3' type = 'submit' id='booking3' >View Bookings</button>
+   </form>
+
   <form action='Info.php' method="GET" name="refresh" id="refresh">
      <div >
       <button name="refresh" id="refresh" action='Info.php' method="GET">Refresh</button>
@@ -37,6 +41,10 @@
 
 <?php
 session_start();
+if(!$_SESSION['uid'])
+{
+    header("location:/Login.php");
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
  {

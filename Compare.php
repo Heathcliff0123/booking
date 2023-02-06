@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!$_SESSION['uid'])
+{
+    header("location:/Login.php");
+}
 //&& isset($_POST['compare'])
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['compare']))
  {

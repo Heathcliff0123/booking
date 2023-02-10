@@ -13,10 +13,7 @@
     <div >
       <button type = "submit" name="login" id="login">Login</button>
     </div>
-    
-    <!-- <div class="submit">
-      <button @click="Login">Login</button>
-    </div> -->
+
   </form>
 
   <form action='Login.php' method="POST" name="register">
@@ -32,7 +29,7 @@ session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']))
  {
-    header("location:/Register.php");
+    header("location:/Pages/Register.php");
  }
 
  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login']))
@@ -46,14 +43,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']))
     $name = $_POST['name'];
     $password = $_POST['password'];
     $sql = "SELECT password FROM users where Username = '$name'";
-    //where Username = '$name'
+
     $result = $conn->query($sql);
     if($result){
    if($result->num_rows > 0){
         foreach ($result->fetch_assoc() as $row)
         {
-            //echo $row->fetch("password");
-            //echo $row["password"];
+ 
            
             if($password == $row){
                 echo "Password success";
@@ -65,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']))
                         foreach ($result->fetch_assoc() as $row)
                         {
                             $_SESSION['uid'] = $row;
-                            header("location:/Select.php");
+                            header("location:/Pages/Select.php");
                         }
                     } else {
                         echo "Password incorrect";

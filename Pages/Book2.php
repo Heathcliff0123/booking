@@ -1,29 +1,28 @@
 <?php
 session_start();
-
 if(!$_SESSION['uid'])
 {
-    header("location:/Login.php");
+    header("location:/Pages/Login.php");
 }
-
- if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book1']))
+ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['book2']))
  {
     $conn = new mysqli('sql8.freesqldatabase.com','sql8594466','XBamJ2kXFC','sql8594466');
         if($conn->connect_error){
             die( $conn->connect_error);
         }
-    $hid = $_SESSION['hid1'];
+    $hid = $_SESSION['hid2'];
     $uid = $_SESSION['uid'];
    
     $sql = "SELECT * FROM users where id = $uid";
-    //where Username = '$name'
     $resultu = $conn->query($sql);
      $sql = "SELECT * FROM hotels where id = $hid";
-    //where Username = '$name'
     $resulth = $conn->query($sql);
     if($resultu){
    if($resultu->num_rows > 0){
     $userd = $resultu->fetch_assoc();
+       
+     
+  
    } else{
     echo "user data fault";
    }
@@ -34,7 +33,7 @@ if(!$_SESSION['uid'])
 }
  if($resulth){
    if($resulth->num_rows > 0){
-    $hotelData = $resulth->fetch_assoc();
+    $hoteld = $resulth->fetch_assoc();
        
      
   
@@ -49,22 +48,19 @@ if(!$_SESSION['uid'])
     $diff = getdate($outDate - $inDate)["mday"];
     $inDate = date('y/m/d',$inDate);
     $outDate = date('y/m/d',$outDate);
-    $hName = $hotelData["name"];
-    $price = $hotelData["price"];
+    $hName = $hoteld["name"];
+    $price = $hoteld["price"];
     $total = $diff*$price;
-    $rating = $hotelData["rating"];
-    $beds = $hotelData["beds"];
-    $bar = $hotelData["bar"];
-    $pool = $hotelData["pool"];
-    $sea = $hotelData["sea"];
-    $activity = $hotelData["activity"];
-    $address = $hotelData["address"];
+    $rating = $hoteld["rating"];
+    $beds = $hoteld["beds"];
+    $bar = $hoteld["bar"];
+    $pool = $hoteld["pool"];
+    $sea = $hoteld["sea"];
+    $activity = $hoteld["activity"];
+    $address = $hoteld["address"];
 
         echo "<table border=0>";
-       //$response = array();
 
-          
-            // Dispay the column names, using the array
             echo "<tr>";
             echo "<td>Guest Name</td>";
             echo "<td>" . $gName. "</td>";
@@ -153,18 +149,35 @@ if(!$_SESSION['uid'])
             echo "<td>" . $address. "</td>";
             echo "</tr>";
             echo "</table>";
-            echo "<form action='Bookings.php' method='POST' name='booking1'>";
+           echo "<form action='Bookings.php' method='POST' name='booking1'>";
             echo "<button name='booking1' type = 'submit' id='booking1' >Confirm</button>";
             echo "</form>";
 
+
+    
+
+
+ } else{
+
+
+
+    echo 'fail hotel';
  }
 
 
- 
+  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirm']))
+ {
+    echo "<form action='Info.php' method='POST' name='select'>";
+    echo " <div >";
+    echo "  <button type = 'submit' name='select' id='select'>Select Hotel</button>";
+    echo "  </div>";
+    echo "</form>";
+    echo "Booking Confirmed";
+ }
 
  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
  {
-    header("location:/Select.php");
+    header("location:/Pages/Select.php");
  }
 
 ?>

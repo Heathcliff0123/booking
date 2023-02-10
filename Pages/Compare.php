@@ -2,9 +2,8 @@
 session_start();
 if(!$_SESSION['uid'])
 {
-    header("location:/Login.php");
+    header("location:/Pages/Login.php");
 }
-//&& isset($_POST['compare'])
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['compare']))
  {
          
@@ -19,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['compare']))
     $current = $conn->query($sql);
     
     $sql = "SELECT * FROM hotels";
-    //where Username = '$name'
+
     $result2 = $conn->query($sql);
 if($result1 || $current){
    if($result1->num_rows > 0||$current->num_rows > 0){
@@ -31,7 +30,7 @@ if($result1 || $current){
         echo "<label for='hotel1'>Choose a hotel 1:</label>";
         echo "<select name='hotel1' >";
         echo "<option value=".$current['id'].">Current Hotel</option>";
-        while($row = $result1->fetch_assoc()) // Loop through the columns array
+        while($row = $result1->fetch_assoc()) 
         {
             
            echo "<option value=".$row['id'].">".$row['name']."</option>";
@@ -55,7 +54,7 @@ if($result2){
     
         echo "<label for='hotel2'>Choose a hotel 2:</label>";
         echo "<select name='hotel2' >";
-        while($row = $result2->fetch_assoc()) // Loop through the columns array
+        while($row = $result2->fetch_assoc()) 
         {
             
            echo "<option value=".$row['id'].">".$row['name']."</option>";
@@ -98,27 +97,25 @@ if($result2){
     $id1 = $_GET['hotel1'];
     $_SESSION['hid1'] = $id1;
     $sql = "SELECT * FROM hotels where id = $id1";
-    //where Username = '$name'
+   
     $result1 = $conn->query($sql);
     
     $id2 = $_GET['hotel2'];
     $_SESSION['hid2'] = $id2;
     $sql = "SELECT * FROM hotels where id = $id2";
-    //where Username = '$name'
+  
     $result2 = $conn->query($sql);
 
     if($result1){
    if($result1->num_rows > 0){
        
-        //Create an HTML table
+      
          echo "<div class='grid-container'>";
         echo "<div class='grid-item'>";
         echo "<table border=1>";
-       //$response = array();
-       while($row = $result1->fetch_assoc()) {// Loop through the columns array
+   
+       while($row = $result1->fetch_assoc()) {
           
-            // Dispay the column names, using the array
-           
             echo "<tr>";
             echo "<td>name</td>";
             echo "<td>" . $row["name"]. "</td>";
@@ -174,14 +171,12 @@ if($result2){
     if($result2){
    if($result2->num_rows > 0){
        
-        //Create an HTML table
+
          echo "<div class='grid-container'>";
         echo "<div class='grid-item'>";
         echo "<table border=1>";
-       //$response = array();
-       while($row = $result2->fetch_assoc()) {// Loop through the columns array
-          
-            // Dispay the column names, using the array
+  
+       while($row = $result2->fetch_assoc()) {
            
             echo "<tr>";
             echo "<td>name</td>";

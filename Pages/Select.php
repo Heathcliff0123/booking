@@ -30,12 +30,12 @@
 session_start();
 if(!$_SESSION['uid'])
 {
-    header("location:/Login.php");
+    header("location:/Pages/Login.php");
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['details']))
  {
-    header("location:/Info.php");
+    header("location:/Pages/Info.php");
  }
  
  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cDates']))
@@ -49,14 +49,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['details']))
         }
    
     $sql = "SELECT * FROM hotels";
-    //where Username = '$name'
     $result = $conn->query($sql);
     if($result){
    if($result->num_rows > 0){
     echo "<form name='cHotel' action='Select.php' method='Get'> ";
         echo "<label for='hotel'>Choose a hotel:</label>";
         echo "<select name='hotel' >";
-        while($row = $result->fetch_assoc()) // Loop through the columns array
+        while($row = $result->fetch_assoc())
         {
             
            echo "<option value=".$row['id'].">".$row['name']."</option>";
@@ -89,17 +88,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['details']))
     $id = $_GET['hotel'];
     $_SESSION['hid1'] = $id;
     $sql = "SELECT * FROM hotels where id = $id";
-    //where Username = '$name'
+
     $result = $conn->query($sql);
     if($result){
    if($result->num_rows > 0){
        
-        //Create an HTML table
+ 
         echo "<table border=1>";
-       //$response = array();
-       while($row = $result->fetch_assoc()) {// Loop through the columns array
+
+       while($row = $result->fetch_assoc()) {
           
-            // Dispay the column names, using the array
+
            
             echo "<tr>";
             echo "<td>name</td>";

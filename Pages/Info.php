@@ -43,12 +43,12 @@
 session_start();
 if(!$_SESSION['uid'])
 {
-    header("location:/Login.php");
+    header("location:/Pages/Login.php");
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
  {
-    header("location:/Select.php");
+    header("location:/Pages/Select.php");
  }
 
  if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['refresh']))
@@ -60,50 +60,40 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
             die( $conn->connect_error);
         }
    
-    // $name = $_POST['name'];
-    // $fullname = $_POST['fullname'];
-    // $email = $_POST['email'];
-    // $password = $_POST['password'];
-   // $id = "<script>localstorage.getItem('id');</script>";
+
     $id = $_SESSION['uid'];
   
-    //$sql = "INSERT INTO `users`(`Username`, `Fullname`, `password`, `email`) VALUES ('$name','$fullname','$password','$email')";
+
     $sql = "SELECT * FROM users WHERE id = $id";
     $result = $conn->query($sql);
     if($result){
 
    if($result->num_rows > 0){
-     echo "success";
-    //echo "<script>document.getElementById("'name'").setAttribute('$id');</script>";
 
 
-       // echo "success";
-
-      //Create an HTML table
       echo "<p>Please enter knew values in relevent columns above</p>";
         echo "<table border=1>";
-       //$response = array();
         echo "<tr>";
             echo "<td>Username</td>";
             echo "<td>Fullname</td>";
             echo "<td>password</td>";
             echo "<td>email</td>";
             echo "</tr>";
-       while($row = $result->fetch_assoc()) {// Loop through the columns array
+       while($row = $result->fetch_assoc()) {
             echo "<tr>";
-            // Dispay the column names, using the array
+ 
            
             echo "<td>" . $row["Username"]. "</td>";
             echo "<td>" . $row["Fullname"]. "</td>";
             echo "<td>" . $row["password"]. "</td>";
             echo "<td>" . $row["email"]. "</td>";
             echo "</tr>";
-           //$response[] = $row; 
+     
           }
        echo "</table>";
-         // echo json_encode($response);
+   
    }
-  //  echo"success";
+
     
 } else {
     echo "Error selecting table 2" . $conn->error;

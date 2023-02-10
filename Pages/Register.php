@@ -17,9 +17,6 @@
     <div >
       <button type = "submit" name="register" id="register">Register</button>
     </div>
-    <!-- <div class="submit">
-      <button @click="Login">Login</button>
-    </div> -->
   </form>
 
     </form>
@@ -38,7 +35,7 @@ session_start();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login']))
  {
-    header("location:/Login.php");
+    header("location:/Pages/Login.php");
  }
 
  if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']))
@@ -62,7 +59,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login']))
       $result = $conn->query($sql);
       if($result){
          $_SESSION['uid'] = $row;
-          header("location:/Select.php");
+          header("location:/Pages/Select.php");
       } else{
         echo "registration failed please try again later";
       }

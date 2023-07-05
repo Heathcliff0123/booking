@@ -32,7 +32,7 @@
     <label>Password</label>
     <input name="password" type="text"  />
     <div >
-      <button type = "submit" name="update" id="update">Register</button>
+      <button type = "submit" name="update" id="update">Save</button>
     </div>
     </form>
 </body>
@@ -80,13 +80,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
             echo "<td>email</td>";
             echo "</tr>";
        while($row = $result->fetch_assoc()) {
+        require_once('./Objects/UserObject.php');
+        $user = new User($row["id"],$row["Username"],$row["Fullname"],$row["password"], $row["email"]);
             echo "<tr>";
- 
-           
-            echo "<td>" . $row["Username"]. "</td>";
-            echo "<td>" . $row["Fullname"]. "</td>";
-            echo "<td>" . $row["password"]. "</td>";
-            echo "<td>" . $row["email"]. "</td>";
+            echo "<td>" . $user->getUsername(). "</td>";
+            echo "<td>" . $user->getFullName(). "</td>";
+            echo "<td>" . $user->getPassword(). "</td>";
+            echo "<td>" . $user->getEmail(). "</td>";
             echo "</tr>";
      
           }

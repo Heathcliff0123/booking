@@ -16,9 +16,9 @@
    </form>
   <form action='Select.php' method="POST" name="cDates">
     <label>CHeck in Date</label>
-    <input name="dateIn" type="datetime-local" required />
+    <input name="dateIn" type="date" required />
     <label>Check out Date</label>
-    <input name="dateOut" type="datetime-local" required />
+    <input name="dateOut" type="date" required />
     <div >
       <button name="cDates" type = "submit" id="cDates">Choose Dates</button>
     </div>

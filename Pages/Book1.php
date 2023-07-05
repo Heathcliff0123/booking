@@ -47,16 +47,19 @@ if(!$_SESSION['uid'])
     $diff = getdate($outDate - $inDate)["mday"];
     $inDate = date('y/m/d',$inDate);
     $outDate = date('y/m/d',$outDate);
-    $hName = $hotelData["name"];
-    $price = $hotelData["price"];
-    $total = $diff*$price;
-    $rating = $hotelData["rating"];
-    $beds = $hotelData["beds"];
-    $bar = $hotelData["bar"];
-    $pool = $hotelData["pool"];
-    $sea = $hotelData["sea"];
-    $activity = $hotelData["activity"];
-    $address = $hotelData["address"];
+    
+    require_once('./Objects/HotelObject.php');
+    $hotel = new Hotel($hotelData["name"],$hotelData["price"],$hotelData["rating"],$hotelData["beds"],$hotelData["bar"],$hotelData["pool"],$hotelData["sea"],$hotelData["activity"],$hotelData["address"]);
+    $hName = $hotel->getName();
+    $price = $hotel->getPrice();
+    $total = $hotel->getTotal($diff);
+    $rating = $hotel->getRating();
+    $beds = $hotel->getBeds();
+    $bar = $hotel->getBar();
+    $pool = $hotel->getPool();
+    $sea = $hotel->getSea();
+    $activity = $hotel->getActivity();
+    $address = $hotel->GETaddress();
 
         echo "<table border=0>";
 

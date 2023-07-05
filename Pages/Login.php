@@ -53,14 +53,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register']))
            
             if($password == $row){
                 echo "Password success";
-                 $sql = "SELECT id FROM users where Username = '$name' and Password = '$password' ";
+                 $sql = "SELECT * FROM users where Username = '$name' and Password = '$password' ";
                  $result = $conn->query($sql);
                  
                  if($result){
                      if($result->num_rows > 0 && $result->num_rows<2){
-                        foreach ($result->fetch_assoc() as $row)
+                         while($row = $result->fetch_assoc())
                         {
-                            $_SESSION['uid'] = $row;
+                            $_SESSION['uid'] = $row["id"];            
                             header("location:/Pages/Select.php");
                         }
                     } else {

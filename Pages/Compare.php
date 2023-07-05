@@ -115,42 +115,43 @@ if($result2){
         echo "<table border=1>";
    
        while($row = $result1->fetch_assoc()) {
-          
+            require_once('./Objects/HotelObject.php');
+            $hotel = new Hotel($row["name"],$row["price"],$row["rating"],$row["beds"],$row["bar"],$row["pool"],$row["sea"],$row["activity"],$row["address"]);
             echo "<tr>";
             echo "<td>name</td>";
-            echo "<td>" . $row["name"]. "</td>";
+            echo "<td>" . $hotel->getName(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>price</td>";
-            echo "<td>" . $row["price"]. "</td>";
+            echo "<td>" . $hotel->getPrice(). "</td>";
             echo "</tr>";
             echo "<tr>";
              echo "<td>rating</td>";
-            echo "<td>" . $row["rating"]. "</td>";
+            echo "<td>" . $hotel->getRating(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>beds</td>";
-            echo "<td>" . $row["beds"]. "</td>";
+            echo "<td>" . $hotel->getBeds(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>bar</td>";
-            echo "<td>" . $row["bar"]. "</td>";
+            echo "<td>" . $hotel->getBar(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>pool</td>";
-            echo "<td>" . $row["pool"]. "</td>";
+            echo "<td>" . $hotel->getPool(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>sea</td>";
-            echo "<td>" . $row["sea"]. "</td>";
+            echo "<td>" . $hotel->getSea(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>activity</td>";
-            echo "<td>" . $row["activity"]. "</td>";
+            echo "<td>" . $hotel->getActivity(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>address</td>";
-            echo "<td>" . $row["address"]. "</td>";
+            echo "<td>" . $hotel->getAddress(). "</td>";
             echo "</tr>";
           }
        echo "</table>";
@@ -176,43 +177,44 @@ if($result2){
         echo "<div class='grid-item'>";
         echo "<table border=1>";
   
-       while($row = $result2->fetch_assoc()) {
-           
+      while($row = $result2->fetch_assoc()) {
+            require_once('./Objects/HotelObject.php');
+            $hotel2 = new Hotel($row["name"],$row["price"],$row["rating"],$row["beds"],$row["bar"],$row["pool"],$row["sea"],$row["activity"],$row["address"]);
             echo "<tr>";
             echo "<td>name</td>";
-            echo "<td>" . $row["name"]. "</td>";
+            echo "<td>" . $hotel2->getName(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>price</td>";
-            echo "<td>" . $row["price"]. "</td>";
+            echo "<td>" . $hotel2->getPrice(). "</td>";
             echo "</tr>";
             echo "<tr>";
              echo "<td>rating</td>";
-            echo "<td>" . $row["rating"]. "</td>";
+            echo "<td>" . $hotel2->getRating(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>beds</td>";
-            echo "<td>" . $row["beds"]. "</td>";
+            echo "<td>" . $hotel2->getBeds(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>bar</td>";
-            echo "<td>" . $row["bar"]. "</td>";
+            echo "<td>" . $hotel2->getBar(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>pool</td>";
-            echo "<td>" . $row["pool"]. "</td>";
+            echo "<td>" . $hotel2->getPool(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>sea</td>";
-            echo "<td>" . $row["sea"]. "</td>";
+            echo "<td>" . $hotel2->getSea(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>activity</td>";
-            echo "<td>" . $row["activity"]. "</td>";
+            echo "<td>" . $hotel2->getActivity(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>address</td>";
-            echo "<td>" . $row["address"]. "</td>";
+            echo "<td>" . $hotel2->getAddress(). "</td>";
             echo "</tr>";
           }
        echo "</table>";

@@ -96,45 +96,44 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['details']))
  
         echo "<table border=1>";
 
-       while($row = $result->fetch_assoc()) {
-          
-
-           
+      while($row = $result->fetch_assoc()) {
+            require_once('./Objects/HotelObject.php');
+            $hotel = new Hotel($row["name"],$row["price"],$row["rating"],$row["beds"],$row["bar"],$row["pool"],$row["sea"],$row["activity"],$row["address"]);
             echo "<tr>";
             echo "<td>name</td>";
-            echo "<td>" . $row["name"]. "</td>";
+            echo "<td>" . $hotel->getName(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>price</td>";
-            echo "<td>" . $row["price"]. "</td>";
+            echo "<td>" . $hotel->getPrice(). "</td>";
             echo "</tr>";
             echo "<tr>";
              echo "<td>rating</td>";
-            echo "<td>" . $row["rating"]. "</td>";
+            echo "<td>" . $hotel->getRating(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>beds</td>";
-            echo "<td>" . $row["beds"]. "</td>";
+            echo "<td>" . $hotel->getBeds(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>bar</td>";
-            echo "<td>" . $row["bar"]. "</td>";
+            echo "<td>" . $hotel->getBar(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>pool</td>";
-            echo "<td>" . $row["pool"]. "</td>";
+            echo "<td>" . $hotel->getPool(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>sea</td>";
-            echo "<td>" . $row["sea"]. "</td>";
+            echo "<td>" . $hotel->getSea(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>activity</td>";
-            echo "<td>" . $row["activity"]. "</td>";
+            echo "<td>" . $hotel->getActivity(). "</td>";
             echo "</tr>";
             echo "<tr>";
             echo "<td>address</td>";
-            echo "<td>" . $row["address"]. "</td>";
+            echo "<td>" . $hotel->getAddress(). "</td>";
             echo "</tr>";
           }
        echo "</table>";

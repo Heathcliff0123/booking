@@ -110,12 +110,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
             die( $conn->connect_error);
         }
         $id = $_SESSION['id'];
-         echo "hello ";
+
   if(isset($_POST['name']) && $_POST['name'] != "")
    {
    
      $name = $_POST['name'];
-     $sql = "UPDATE users set Username = '$name' where id = $id";
+     $sql = "UPDATE `users` set Username = '$name' where `id` = '$id'";
        $result = $conn->query($sql);
       if($result){
 
@@ -130,7 +130,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
    {
    
      $name = $_POST['fullname'];
-     $sql = "UPDATE users set Fullname = '$name' where id = $id";
+     $sql = "UPDATE `users` set `Fullname` = '$name' where `id` = '$id'";
        $result = $conn->query($sql);
       if($result){
 
@@ -145,7 +145,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
    {
    
      $email = $_POST['email'];
-     $sql = "UPDATE users set email = '$email' where id = $id";
+     $sql = "UPDATE `users` set `email` = '$email' where `id` = '$id'";
        $result = $conn->query($sql);
       if($result){
 
@@ -160,7 +160,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['select']))
    {
    
      $password = $_POST['password'];
-     $sql = "UPDATE users set password = '$password' where id = $id";
+     $sql = "UPDATE `users` set `password` = '$password' where `id` = '$id'";
        $result = $conn->query($sql);
       if($result){
 
